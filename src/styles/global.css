@@ -1,5 +1,5 @@
 :root {
-  --hh-color: #FF6600;
+  --accent-color: #FF6600;
   --global-margin: 4rem;
   --primary-text: #222;
   --secondary-text: #555;
@@ -26,6 +26,11 @@ html {
 
 h1 {
   font-size: 3rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
 }
 
 h4 {
