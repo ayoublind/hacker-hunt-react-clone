@@ -1,0 +1,19 @@
+.header {
+  display: grid;
+  grid-template-columns: var(--left-column-width) auto var(--right-column-width);
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.header__logo {
+  width: 3rem;
+  height: 3rem;
+  grid-column: 1 / 2;
+}
+
+.header__search {
+  height: 3rem;
+  grid-column: 2 / 3;
+  border: 1px solid #ddd;
+}

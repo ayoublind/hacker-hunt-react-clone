@@ -1,0 +1,4 @@
+.article__heading {
+  color: var(--tertiary-text);
+  text-transform: uppercase;
+}
