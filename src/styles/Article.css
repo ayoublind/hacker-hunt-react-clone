@@ -12,18 +12,19 @@
 
 .article__grid > a {
   text-decoration: none;
+  color: var(--primary-text);
 }
 
 .article__grid > a:hover {
   color: var(--accent-color);
 }
 
-.article__comments {
+.article__votes {
   grid-column: 1 / 2;
   grid-row: 1 / 4;
 }
 
-.count {
+.votes {
   grid-column: 1 / 2;
   margin: 2rem 0 1rem 0;
   font-weight: 100;
@@ -55,6 +56,15 @@
   color: var(--accent-color);
 }
 
+.star {
+  color: var(--accent-color);
+  font-size: 2.2rem;
+}
+
+.star:hover {
+  cursor: default;
+}
+
 .article__desc {
   grid-column: 2 / -1;
   grid-row: 2 / 3;
@@ -67,7 +77,7 @@
   grid-column: 2 / -1;
   grid-row: 3 / 4;
   color: var(--tertiary-text);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .article__author {

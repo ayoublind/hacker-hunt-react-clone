@@ -3,9 +3,9 @@
   grid-template-columns: var(--left-column-width) auto var(--right-column-width);
 }
 
-
 .header {
   grid-column: 1 / -1;
+  grid-row: 1 / 2;
 }
 
 .topics {
@@ -14,4 +14,22 @@
 
 .article {
   grid-column: 2 / 3;
+}
+
+.loading {
+  grid-column: 2 / 3;
+}
+
+.is-loading {
+  opacity: 0;
+}
+
+.is-loaded {
+  opacity: 1;
+  transition: 0.6s ease-in all;
+}
+
+.contact {
+  grid-column: 3 / -1;
+  grid-row: 2 / 3;
 }

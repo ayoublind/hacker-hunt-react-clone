@@ -5,7 +5,12 @@ import logo from '../assets/hh-logo.svg';
 const Header = () => (
   <div className="header">
     <img src={logo} alt="Hacker Hunt" className="header__logo" />
-    <input type="text" name="search" className="header__search" />
+    <input 
+      type="text" 
+      name="search" 
+      className="header__search" 
+      placeholder="🔍"  
+    />
   </div>
 );
 
