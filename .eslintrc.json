@@ -27,6 +27,7 @@
 	   "quotes": ["off", "backticks"],
     "react/jsx-closing-bracket-location": 2,
     "react/prefer-stateless-function": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "no-nested-ternary": 0
   }
 }

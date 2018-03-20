@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import logo from '../assets/hh-logo.svg';
 
-const Header = () => (
+const Header = props => (
   <div className="header">
-    <img src={logo} alt="Hacker Hunt" className="header__logo" />
+    <Link to="/" onClick={props.returnHome}>
+      <img src={logo} alt="Hacker Hunt" className="header__logo" />
+    </Link>
     <input 
       type="text" 
       name="search" 

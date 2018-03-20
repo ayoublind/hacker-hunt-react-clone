@@ -16,6 +16,7 @@
   grid-column: 2 / 3;
 }
 
+
 .loading {
   grid-column: 2 / 3;
 }
@@ -27,6 +28,11 @@
 .is-loaded {
   opacity: 1;
   transition: 0.6s ease-in all;
+}
+
+.previous {
+  display: block;
+  margin: 5rem auto;
 }
 
 .contact {

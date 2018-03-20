@@ -4,22 +4,24 @@ import Header from './Header';
 import Topics from './Topics';
 import Article from './Article';
 import Contact from './Contact';
+import Previous from './Previous';
 
 class App extends Component {
   state = {
     articles: {},
     isLoaded: false,
     error: null,
+    day: 0,
     topics: ['Development', 'System', 'Tools', 'Data Science', 'Blockchain', 'Mobile', 'Awesome Lists', 'Social', 'Visual', 'Open Source', 'All Topics'],
     icons: ['🚀', '🛠️', '🎛️', '💽', '🔗', '📱', '✨', '🤙', '🖼️', '🍺', '🗃️'],
   }
 
   componentDidMount() {
-    this.getArticles();
+    this.getArticles(this.state.day);
   };
 
-  getArticles = () => {
-    fetch(`https://cors-anywhere.herokuapp.com/https://hackerhunt.co/api/daily/0`)
+  getArticles = (day) => {
+    fetch(`https://cors-anywhere.herokuapp.com/https://hackerhunt.co/api/daily/${day}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -37,6 +39,19 @@ class App extends Component {
       )
   };
 
+  previousDay = () => {
+    const day = this.state.day;
+    const previous = day + 1;
+    this.setState({ day: previous, isLoaded: false, });
+    this.getArticles(previous);
+  };
+
+  returnHome = () => {
+    const day = 0;
+    this.setState({ day, isLoaded: false, });
+    this.getArticles(day);
+  }
+
 
   render() {
     const { articles, isLoaded } = this.state;
@@ -44,7 +59,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header className="App__header" />
+        <Header className="App__header" returnHome={this.returnHome} />
         <Topics 
           topics={this.state.topics} 
           icons={this.state.icons}
@@ -60,11 +75,17 @@ class App extends Component {
                 <Article 
                   key={key}
                   articles={articles[key]}
+                  day={this.state.day}
                   className="App__article" 
                 />
               ))}
             </div>
           )}
+          <Previous 
+            className="previous" 
+            previousDay={this.previousDay} 
+            day={this.state.day}
+          />
         </div>
         <Contact className="contact" />
       </div>
