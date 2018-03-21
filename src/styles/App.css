@@ -1,6 +1,7 @@
 .App {
   display: grid;
   grid-template-columns: var(--left-column-width) auto var(--right-column-width);
+  grid-column-gap: 5rem;
 }
 
 .header {

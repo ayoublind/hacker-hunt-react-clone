@@ -1,12 +1,23 @@
 import React from 'react';
 import '../styles/Article.css';
+import Sort from './Sort';
 
 const Article = (props) => {
   const day = props.day === 0 ? 'today' : props.day === 1 ? 'a day ago' : `${props.day} days ago`;
   
     return (
       <div className="article">
-        <h4 className="article__heading">{day}</h4>
+        <section className="heading">
+          <h4 className="article__heading">{day}</h4>
+          <Sort 
+            popularSort={props.popularSort} 
+            commentSort={props.commentSort}
+            newestSort={props.newestSort}
+            sorted={props.sorted}
+            notSorted={props.notSorted}
+            className="article__sort"
+          />
+        </section>
         {props.articles.map(article => (
           <div key={article.id} className="article__grid"> 
             <a href={article.link} target="_blank" className="article__votes"> 

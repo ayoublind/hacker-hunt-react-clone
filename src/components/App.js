@@ -12,6 +12,8 @@ class App extends Component {
     isLoaded: false,
     error: null,
     day: 0,
+    sorted: 'newest',
+    notSorted: ['popular', 'comments', null],
     topics: ['Development', 'System', 'Tools', 'Data Science', 'Blockchain', 'Mobile', 'Awesome Lists', 'Social', 'Visual', 'Open Source', 'All Topics'],
     icons: ['🚀', '🛠️', '🎛️', '💽', '🔗', '📱', '✨', '🤙', '🖼️', '🍺', '🗃️'],
   }
@@ -49,8 +51,36 @@ class App extends Component {
   returnHome = () => {
     const day = 0;
     this.setState({ day, isLoaded: false, });
+    this.props.location.pathname = "/";
     this.getArticles(day);
-  }
+  };
+
+  popularSort = () => {
+    const state = { ...this.state.articles };
+    const popular = state.data.sort((a, b) => {
+      return a.votes > b.votes ? -1 : 1;
+    });
+    console.log(popular);
+    this.setState({ articles: { popular } });
+  };
+
+  newestSort = () => {
+    const state = { ...this.state.articles };
+    const newest = state.data.sort((a, b) => {
+      return b.date > a.date ? 1 : -1;
+    });
+    console.log(newest);
+    this.setState({ articles: { newest } });
+  };
+
+  commentSort = () => {
+    const state = { ...this.state.articles };
+    const comments = state.data.sort((a, b) => {
+      return a.comments > b.comments ? -1 : 1;
+    });
+    console.log(comments);
+    this.setState({ articles: { comments } });
+  };
 
 
   render() {
@@ -77,6 +107,11 @@ class App extends Component {
                   articles={articles[key]}
                   day={this.state.day}
                   className="App__article" 
+                  popularSort={this.popularSort}
+                  commentSort={this.commentSort}
+                  newestSort={this.newestSort}
+                  sorted={this.state.sorted}
+                  notSorted={this.state.notSorted}
                 />
               ))}
             </div>

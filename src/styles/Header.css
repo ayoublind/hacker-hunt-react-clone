@@ -3,6 +3,7 @@
   grid-template-columns: var(--left-column-width) auto var(--right-column-width);
   align-items: center;
   margin-bottom: 5rem;
+  grid-column-gap: 5rem;
 }
 
 .header__logo {
