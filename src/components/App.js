@@ -12,8 +12,8 @@ class App extends Component {
     isLoaded: false,
     error: null,
     day: 0,
-    sorted: 'newest',
-    notSorted: ['popular', 'comments', null],
+    sortedTitle: 'popular',
+    notSorted: ['newest', 'comments'],
     topics: ['Development', 'System', 'Tools', 'Data Science', 'Blockchain', 'Mobile', 'Awesome Lists', 'Social', 'Visual', 'Open Source', 'All Topics'],
     icons: ['🚀', '🛠️', '🎛️', '💽', '🔗', '📱', '✨', '🤙', '🖼️', '🍺', '🗃️'],
   }
@@ -27,9 +27,13 @@ class App extends Component {
       .then(res => res.json())
       .then(
         (result) => {
+          // return popular results by default
+          const popular = result.data.sort((a, b) => {
+            return a.votes > b.votes ? -1 : 1;
+          });
           this.setState({
             isLoaded: true,
-            articles: result,
+            articles: { popular },
           });
         },
         (error) => {
@@ -39,6 +43,14 @@ class App extends Component {
           });
         }
       )
+  };
+
+  newSelection = (currentTitle, newTitle) => {
+    const notSortedArray = [...this.state.notSorted];
+    const newArray = notSortedArray.filter((item) => item !== newTitle ? item : null);
+    newArray.push(currentTitle);
+    this.setState({ sortedTitle: newTitle, notSorted: newArray });
+
   };
 
   previousDay = () => {
@@ -60,7 +72,6 @@ class App extends Component {
     const popular = state.data.sort((a, b) => {
       return a.votes > b.votes ? -1 : 1;
     });
-    console.log(popular);
     this.setState({ articles: { popular } });
   };
 
@@ -69,7 +80,6 @@ class App extends Component {
     const newest = state.data.sort((a, b) => {
       return b.date > a.date ? 1 : -1;
     });
-    console.log(newest);
     this.setState({ articles: { newest } });
   };
 
@@ -78,7 +88,6 @@ class App extends Component {
     const comments = state.data.sort((a, b) => {
       return a.comments > b.comments ? -1 : 1;
     });
-    console.log(comments);
     this.setState({ articles: { comments } });
   };
 
@@ -110,8 +119,9 @@ class App extends Component {
                   popularSort={this.popularSort}
                   commentSort={this.commentSort}
                   newestSort={this.newestSort}
-                  sorted={this.state.sorted}
+                  sortedTitle={this.state.sortedTitle}
                   notSorted={this.state.notSorted}
+                  newSelection={this.newSelection}
                 />
               ))}
             </div>

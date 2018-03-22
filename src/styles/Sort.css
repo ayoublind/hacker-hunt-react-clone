@@ -25,7 +25,8 @@
   border-color: var(--tertiary-text) transparent transparent transparent;
   position: absolute;
   margin-top: 0.3rem;
-  margin-left: 1.5rem;
+  margin-left: 2rem;
+  position: absolute;
 }
 
 .sort__dropdown {

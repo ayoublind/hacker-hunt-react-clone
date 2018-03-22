@@ -13,8 +13,9 @@ const Article = (props) => {
             popularSort={props.popularSort} 
             commentSort={props.commentSort}
             newestSort={props.newestSort}
-            sorted={props.sorted}
+            sortedTitle={props.sortedTitle}
             notSorted={props.notSorted}
+            newSelection={props.newSelection}
             className="article__sort"
           />
         </section>

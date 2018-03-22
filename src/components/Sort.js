@@ -7,22 +7,23 @@ class Sort extends React.Component {
     dropdown: 'off',
   }
 
-  handleClick = () => {
+  openDropdownClick = () => {
     const dropdownState = this.state.dropdown === 'off' ? 'on' : 'off';
     this.setState({ dropdown: dropdownState });
   }
 
   render() {
     const { dropdown } = this.state;
+    const { sortedTitle, notSorted, newSelection } = this.props;
     const dropdownState = dropdown === 'off' ? 'sort__dropdown' : 'sort__dropdown sort__dropdown-on';
 
     return (
       <div className="sort">
-        <strong onClick={this.handleClick}>{this.props.sorted}</strong>
+        <strong onClick={this.openDropdownClick}>{sortedTitle}</strong>
         <section className={dropdownState}>
-          <ul>
-            {this.props.notSorted.map(category => (
-              <Link to={`/${category}/`} key={category}>
+          <ul onClick={this.openDropdownClick}>
+            {notSorted.map(category => (
+              <Link to="#" onClick={() => newSelection(sortedTitle, category)} key={category}>
                 {category}
               </Link>
             ))}
