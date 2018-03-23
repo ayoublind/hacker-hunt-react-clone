@@ -22,11 +22,17 @@ class Sort extends React.Component {
         <strong onClick={this.openDropdownClick}>{sortedTitle}</strong>
         <section className={dropdownState}>
           <ul onClick={this.openDropdownClick}>
-            {notSorted.map(category => (
-              <Link to="#" onClick={() => newSelection(sortedTitle, category)} key={category}>
+            {notSorted.map(category => {
+              const linkHome = category === 'popular' ? '/' : `${category}`
+              const linkPrev = category === 'popular' ? 
+                `/${category}/${this.props.day}` : 
+                `/${category}/${this.props.day}`
+              const link = this.props.day === 0 ? linkHome : linkPrev
+            return( 
+              <Link to={link} onClick={() => newSelection(sortedTitle, category)} key={category}>
                 {category}
               </Link>
-            ))}
+            )})}
           </ul>
         </section>
       </div>

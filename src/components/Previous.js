@@ -4,7 +4,7 @@ import '../styles/Previous.css';
 
 const Previous = props => (
   <div>
-    <Link to={`/page/${props.day + 1}`} className="link">
+    <Link to={`/${props.sortedTitle}/${props.day + 1}`} className="link">
       <button 
         onClick={props.previousDay}
         className="previous"
@@ -12,6 +12,6 @@ const Previous = props => (
       </button>
     </Link>
   </div>
-);
+); 
 
 export default Previous;

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import '../styles/Article.css';
 import Sort from './Sort';
 
@@ -16,6 +17,7 @@ const Article = (props) => {
             sortedTitle={props.sortedTitle}
             notSorted={props.notSorted}
             newSelection={props.newSelection}
+            day={props.day}
             className="article__sort"
           />
         </section>
@@ -31,9 +33,9 @@ const Article = (props) => {
             <p className="article__desc">
               {article.desc || article.link}
             </p>
-            <p className="article__time">3 hours ago by <a href={`https://hackerhunt.co/author/${article.author}`} className="article__author">{article.author}</a></p>
+            <p className="article__time">{moment.unix(article.date).fromNow()} by <a href={`https://hackerhunt.co/author/${article.author}`} className="article__author">{article.author}</a></p>
           </div>
-      ))} 
+        ))} 
       </div>
   );
 };

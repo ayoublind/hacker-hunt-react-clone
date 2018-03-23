@@ -28,13 +28,31 @@ class App extends Component {
       .then(
         (result) => {
           // return popular results by default
-          const popular = result.data.sort((a, b) => {
-            return a.votes > b.votes ? -1 : 1;
-          });
-          this.setState({
-            isLoaded: true,
-            articles: { popular },
-          });
+          if (this.state.sortedTitle === 'popular') {
+            const data = result.data.sort((a, b) => {
+              return a.votes > b.votes ? -1 : 1;
+            });
+            this.setState({
+              isLoaded: true,
+              articles: { data },
+            });
+          } else if (this.state.sortedTitle === 'newest') {
+            const data = result.data.sort((a, b) => {
+              return b.date > a.date ? 1 : -1;
+            });
+            this.setState({
+              isLoaded: true,
+              articles: { data },
+            });
+          } else if (this.state.sortedTitle === 'comments') {
+            const data = result.data.sort((a, b) => {
+              return a.comments > b.comments ? -1 : 1;
+            });
+            this.setState({
+              isLoaded: true,
+              articles: { data },
+            });
+          }
         },
         (error) => {
           this.setState({
@@ -49,15 +67,29 @@ class App extends Component {
     const notSortedArray = [...this.state.notSorted];
     const newArray = notSortedArray.filter((item) => item !== newTitle ? item : null);
     newArray.push(currentTitle);
-    this.setState({ sortedTitle: newTitle, notSorted: newArray });
+    this.setState({ 
+      sortedTitle: newTitle, 
+      notSorted: newArray, 
+    });
 
+    if (newTitle === 'newest') {
+      this.newestSort();
+    } else if (newTitle === 'comments') {
+      this.commentSort();
+    } else if (newTitle === 'popular') {
+      this.popularSort();
+    }
   };
 
   previousDay = () => {
     const day = this.state.day;
     const previous = day + 1;
-    this.setState({ day: previous, isLoaded: false, });
-    this.getArticles(previous);
+    const data = this.getArticles(previous);
+    this.setState({ 
+      articles: { data }, 
+      day: previous, 
+      isLoaded: false, 
+    });
   };
 
   returnHome = () => {
@@ -69,26 +101,27 @@ class App extends Component {
 
   popularSort = () => {
     const state = { ...this.state.articles };
-    const popular = state.data.sort((a, b) => {
+    const data = state.data.sort((a, b) => {
       return a.votes > b.votes ? -1 : 1;
     });
-    this.setState({ articles: { popular } });
+    this.setState({ articles: { data } });
+    console.log(typeof(state));
   };
 
   newestSort = () => {
     const state = { ...this.state.articles };
-    const newest = state.data.sort((a, b) => {
+    const data = state.data.sort((a, b) => {
       return b.date > a.date ? 1 : -1;
     });
-    this.setState({ articles: { newest } });
+    this.setState({ articles: { data } });
   };
 
   commentSort = () => {
     const state = { ...this.state.articles };
-    const comments = state.data.sort((a, b) => {
+    const data = state.data.sort((a, b) => {
       return a.comments > b.comments ? -1 : 1;
     });
-    this.setState({ articles: { comments } });
+    this.setState({ articles: { data } });
   };
 
 
@@ -129,6 +162,7 @@ class App extends Component {
           <Previous 
             className="previous" 
             previousDay={this.previousDay} 
+            sortedTitle={this.state.sortedTitle}
             day={this.state.day}
           />
         </div>

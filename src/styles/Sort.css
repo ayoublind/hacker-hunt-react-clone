@@ -3,7 +3,7 @@
   text-transform: uppercase;
   font-size: 1.2rem;
   position: relative;
-  padding: 0 0.6rem;;
+  padding: 0 0.6rem;
 }
 
 .sort strong:hover {
@@ -34,7 +34,7 @@
   text-transform: uppercase;
   font-size: 1.2rem;
   display: none;
-  width: 7rem;
+  width: 9rem;
 }
 
 .sort__dropdown ul a {
@@ -56,5 +56,5 @@
   display: block;
   position: absolute;
   background: #fff;
-  padding: 0 0.6rem 0.6rem 0.6rem;
+  padding: 0 1rem 0.6rem 0.6rem;
 }
