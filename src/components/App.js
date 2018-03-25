@@ -30,7 +30,7 @@ class App extends Component {
           // return popular results by default
           if (this.state.sortedTitle === 'popular') {
             const data = result.data.sort((a, b) => {
-              return a.votes > b.votes ? -1 : 1;
+              return parseInt(b.votes, 10) > parseInt(a.votes, 10) ? 1 : -1;    
             });
             this.setState({
               isLoaded: true,
@@ -46,7 +46,7 @@ class App extends Component {
             });
           } else if (this.state.sortedTitle === 'comments') {
             const data = result.data.sort((a, b) => {
-              return a.comments > b.comments ? -1 : 1;
+              return parseInt(b.votes, 10) > parseInt(a.votes, 10) ? 1 : -1;        
             });
             this.setState({
               isLoaded: true,
@@ -102,10 +102,9 @@ class App extends Component {
   popularSort = () => {
     const state = { ...this.state.articles };
     const data = state.data.sort((a, b) => {
-      return a.votes > b.votes ? -1 : 1;
+      return parseInt(b.votes, 10) > parseInt(a.votes, 10) ? 1 : -1;
     });
     this.setState({ articles: { data } });
-    console.log(typeof(state));
   };
 
   newestSort = () => {
@@ -119,7 +118,7 @@ class App extends Component {
   commentSort = () => {
     const state = { ...this.state.articles };
     const data = state.data.sort((a, b) => {
-      return a.comments > b.comments ? -1 : 1;
+      return parseInt(b.comments, 10) > parseInt(a.comments, 10) ? 1 : -1;
     });
     this.setState({ articles: { data } });
   };
