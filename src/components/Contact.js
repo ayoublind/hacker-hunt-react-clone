@@ -21,7 +21,7 @@ const Contact = () => (
       />
       <button className="contact__form-button">Subscribe</button>
     </div>
-    <p className="contact__paragraph">Proudly brought to you by <a href="https://michaelmanges.com">Michael Manges</a></p>
+    <p className="contact__paragraph">Proudly cloned by <a href="https://michaelmanges.com">Michael Manges</a></p>
   </div>
 );
 

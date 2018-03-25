@@ -46,7 +46,7 @@ class App extends Component {
             });
           } else if (this.state.sortedTitle === 'comments') {
             const data = result.data.sort((a, b) => {
-              return parseInt(b.votes, 10) > parseInt(a.votes, 10) ? 1 : -1;        
+              return parseInt(b.votes, 10) > parseInt(a.votes, 10) ? 1 : -1;    
             });
             this.setState({
               isLoaded: true,
@@ -83,18 +83,26 @@ class App extends Component {
 
   previousDay = () => {
     const day = this.state.day;
+    const title = this.state.sortedTitle;
     const previous = day + 1;
     const data = this.getArticles(previous);
     this.setState({ 
       articles: { data }, 
       day: previous, 
       isLoaded: false, 
+      sortedTitle: title,
     });
   };
 
   returnHome = () => {
     const day = 0;
-    this.setState({ day, isLoaded: false, });
+    const title = 'popular';
+    this.setState({ 
+      day, 
+      isLoaded: false, 
+      sortedTitle: title,
+      notSorted: ['newest', 'comments'],
+    });
     this.props.location.pathname = "/";
     this.getArticles(day);
   };
