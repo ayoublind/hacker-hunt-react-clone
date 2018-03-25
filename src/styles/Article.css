@@ -108,3 +108,10 @@
 .article__author:hover {
   color: var(--accent-color);
 }
+
+.showmore {
+  justify-self: center;
+  margin-top: 1.5rem;
+  color: var(--secondary-text);
+}
+

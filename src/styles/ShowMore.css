@@ -1,0 +1,21 @@
+.showmore p::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 3px 0 3px;
+  border-color: var(--secondary-text) transparent transparent transparent;
+  margin-top: 0.9rem;
+  margin-left: 1rem;
+  position: absolute;
+}
+
+.showmore:hover {
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+.showmore p:hover:after {
+  cursor: pointer;
+  border-color: var(--accent-color) transparent transparent transparent;
+}
